@@ -6,14 +6,19 @@ omd-docker
 Run from Docker Hub
 -------------------
 
-A pre-built image is available on [Docker Hub](https://registry.hub.docker.com/u/lichti/omd-docker) and can be run as follows:
+A pre-built image is available on [Docker Hub](https://hub.docker.com/r/sschueller/omd/) and can be run as follows:
 
-    docker run -d -t -p 80:80 --name 'omd-docker' --hostname 'omd-docker' lichti/omd-docker
-
-This will leave a shell open to access the container.
+    sudo docker run -d --restart=always -p 80:5000 sschueller/omd:latest
 
 OMD will become available on [http://172.X.X.X/default](http://172.X.X.X/default).
 The default login is `omdadmin` with password `omd`.
+
 To find out the IP address, run `ip addr` in the container shell.
+
+For container shell:
+
+    docker exec -it {containerid} bash
+
+Based on lichti/omd-docker
 
 
