@@ -12,12 +12,6 @@ RUN apt-get upgrade -y
 RUN gpg --keyserver keys.gnupg.net --recv-keys F8C1CA08A57B9ED7
 RUN gpg --armor --export F8C1CA08A57B9ED7 | apt-key add -
 
-# Add OMD source
-#RUN echo 'deb http://labs.consol.de/repo/stable/debian jessie main' >> /etc/apt/sources.list
-#RUN apt-get update
-
-#RUN apt-get install -y libpython2.7 locales tzdata wget gdebi-core net-tools postfix time traceroute curl dialog dnsutils fping graphviz libapache2-mod-fcgid libdbi-dev libboost-program-options1.55.0 
-
 RUN apt-get install -y libpython2.7 locales tzdata wget gdebi-core net-tools postfix
 
 RUN wget http://files.omdistro.org/nightly/1.31.20160426/omd-1.31.20160426.jessie.amd64.deb
@@ -29,8 +23,6 @@ RUN echo "Europe/Zurich" > /etc/timezone; dpkg-reconfigure tzdata
 
 #Set locale
 #RUN export LANGUAGE=en_US.UTF-8; export LANG=en_US.UTF-8; export LC_ALL=en_US.UTF-8; locale-gen en_US.UTF-8; dpkg-reconfigure locales
-
-#RUN mkdir -p /omd/sites/
 
 # Set up a default site
 RUN omd create default
@@ -51,6 +43,3 @@ EXPOSE 80 5000
 #RUN omd start
 
 ENTRYPOINT ["/opt/omd/watchdog.sh"]
-#ENTRYPOINT ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
-
-
